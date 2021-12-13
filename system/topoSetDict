@@ -1,0 +1,57 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Version:  2.2.2
+    \\  /    A nd           | Web:  	www.OpenFOAM.org 
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      topoSetDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+actions
+(
+/*   
+ {
+        name    closeTobottom;
+        type    cellSet;
+        action  new;
+        source  boxToCell;
+        sourceInfo
+        {
+            box (0 0 0) (4 0.001 0.25); 
+        }
+    }
+
+    {
+        name    envelope;
+        type    cellSet;
+        action  invert;
+    }
+*/
+    {
+        name    IBs;
+        type    cellSet;
+        action  new;
+        source  surfaceToCell;
+        sourceInfo
+        {
+            file	"cylinders_uni.stl";
+	    useSurfaceOrientation	false;
+	    outsidePoints	((2 0.05 0.005));
+	    includeCut	true;
+	    includeInside	false;
+	    includeOutside	false;
+	    nearDistance	0.001;
+	    curvature		-100;
+        }
+    }
+);
+
+
+// ************************************************************************* //
